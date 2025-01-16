@@ -74,6 +74,7 @@ dependencies {
     //gson
     implementation (libs.gson)
     implementation(libs.kotlinx.serialization.json)
+    implementation (libs.converter.gson)
 
     //Coil
     implementation(libs.coil.compose)
