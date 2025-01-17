@@ -19,7 +19,7 @@ class DailyComicRepositoryImpl @Inject constructor(
                 response.body()?.let {
                     emit(UiState.SUCCESS(it.toDailyComic()))
                 } ?: throw Exception("Response not found")
-            } else throw Exception(response.errorBody()?.toString())
+            } else throw Exception(response.errorBody()?.string())
         } catch (e: Exception){
             emit(UiState.ERROR(e))
         }
@@ -33,7 +33,7 @@ class DailyComicRepositoryImpl @Inject constructor(
                 response.body()?.let {
                     emit(UiState.SUCCESS(it.toDailyComic()))
                 } ?: throw Exception("Response not found")
-            } else throw Exception(response.errorBody()?.toString())
+            } else throw Exception(response.errorBody()?.string())
         } catch (e: Exception){
             emit(UiState.ERROR(e))
         }
