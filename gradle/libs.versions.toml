@@ -5,9 +5,9 @@ coilCompose = "2.2.2"
 converterGson = "2.9.0"
 coreTesting = "2.2.0"
 gson = "2.10.1"
-hiltAndroid = "2.44.2"
+hiltAndroid = "2.51.1"
 hiltNavigationCompose = "1.2.0"
-kotlin = "1.9.0"
+kotlin = "1.9.22"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -61,4 +61,6 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version = "1.9.20-1.0.14" }
+dagger-hilt = { id = "com.google.dagger.hilt.android", version = "2.51.1" }
 
