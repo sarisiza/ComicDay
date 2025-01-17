@@ -5,8 +5,9 @@ import com.upakon.comicday.data.service.DailyComicService
 import com.upakon.comicday.utils.UiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class DailyComicRepositoryImpl(
+class DailyComicRepositoryImpl @Inject constructor(
     private val service: DailyComicService
 ) : DailyComicRepository {
 

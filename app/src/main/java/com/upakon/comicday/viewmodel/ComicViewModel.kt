@@ -10,9 +10,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class ComicViewModel(
+class ComicViewModel @Inject constructor(
     private val repository: DailyComicRepository,
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
