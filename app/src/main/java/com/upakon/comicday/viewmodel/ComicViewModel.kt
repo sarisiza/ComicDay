@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val TAG = "ComicViewModel"
 @HiltViewModel
 class ComicViewModel @Inject constructor(
     private val repository: DailyComicRepository,
@@ -27,7 +28,7 @@ class ComicViewModel @Inject constructor(
     fun getDailyComic(){
         viewModelScope.launch(dispatcher) {
             repository.getDailyComic().collect{
-                _dailyComic.update { it }
+                _dailyComic.value = it
             }
         }
     }
@@ -35,7 +36,7 @@ class ComicViewModel @Inject constructor(
     fun getNumberedComic(id: Int){
         viewModelScope.launch(dispatcher) {
             repository.getNumberedComic(id).collect{
-                _currentComic.update { it }
+                _currentComic.value = it
             }
         }
     }

@@ -32,9 +32,9 @@ fun ComicScreen(
     onErrorRetry: (() -> Unit)
 ){
     val state = if (source == ComicSource.Daily)
-        viewModel.dailyComic.collectAsState().value
+        viewModel.dailyComic.collectAsState(UiState.LOADING).value
     else
-        viewModel.currentComic.collectAsState().value
+        viewModel.currentComic.collectAsState(UiState.LOADING).value
     var showError by remember {
         mutableStateOf(false)
     }

@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -28,8 +29,10 @@ import com.upakon.comicday.ui.screens.StartScreen
 import com.upakon.comicday.ui.theme.ComicDayTheme
 import com.upakon.comicday.utils.ComicSource
 import com.upakon.comicday.viewmodel.ComicViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +42,7 @@ class MainActivity : ComponentActivity() {
             ComicDayTheme {
                 val viewModel = hiltViewModel<ComicViewModel>()
                 val navController = rememberNavController()
+                viewModel.getDailyComic()
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
@@ -64,12 +68,12 @@ fun ComicNavGraph(
 ){
     NavHost(
         navController = navController,
-        startDestination = ComicScreens.START.name
+        startDestination = ComicScreens.START.name,
+        modifier = Modifier.padding(16.dp)
     ) {
         var source = ComicSource.Daily
         var currentId = 0
         composable(ComicScreens.START.name) {
-            viewModel.getDailyComic()
             StartScreen(
                 viewModel = viewModel,
                 padding = paddingValues,

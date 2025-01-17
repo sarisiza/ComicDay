@@ -1,5 +1,6 @@
 package com.upakon.comicday.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -27,6 +28,7 @@ import com.upakon.comicday.utils.UiState
 import com.upakon.comicday.viewmodel.ComicViewModel
 import kotlin.random.Random
 
+private const val TAG = "StartScreen"
 @Composable
 fun StartScreen(
     viewModel: ComicViewModel,
@@ -41,8 +43,9 @@ fun StartScreen(
         mutableStateOf("")
     }
     var confirmAction: (() -> Unit)? = null
-    when (val state = viewModel.dailyComic.collectAsState().value){
+    when (val state = viewModel.dailyComic.collectAsState(UiState.LOADING).value){
         is UiState.ERROR -> {
+            Log.d(TAG, "StartScreen: Error")
             showError = true
             errorMessage = state.error.localizedMessage ?: "Network error"
             confirmAction = {
@@ -50,10 +53,12 @@ fun StartScreen(
             }
         }
         UiState.LOADING -> {
+            Log.d(TAG, "StartScreen: Loading")
             CircularProgressIndicator()
         }
         is UiState.SUCCESS -> {
             val dailyComic = state.result
+            Log.d(TAG, "Success: ${dailyComic.num}")
             Column(
                 modifier = Modifier.padding(padding)
             ) {
